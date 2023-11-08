@@ -1,6 +1,5 @@
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
-import org.opencv.imgcodecs.Imgcodecs;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class ImagePanel extends JPanel {
     private JLabel imageLabel;
-    private Mat image;
+    private Mat matImage;
 
 
     public ImagePanel() {
@@ -30,9 +29,22 @@ public class ImagePanel extends JPanel {
 
     }
 
-   private void showImage() {
-        BufferedImage image = matToBufferedImage(this.image);
-        imageLabel.setIcon(new ImageIcon(image));
+    private void showImage() {
+        BufferedImage image = matToBufferedImage(matImage);
+        int targetWidth = 300;
+        int targetHeight = 300;
+        BufferedImage resizedImage = resizeImage(image, targetWidth, targetHeight);
+
+        imageLabel.setIcon(new ImageIcon(resizedImage));
+    }
+
+    private BufferedImage resizeImage(BufferedImage image, int targetWidth, int targetHeight) {
+        BufferedImage resizedImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
+        Graphics2D graphics2D = resizedImage.createGraphics();
+        graphics2D.drawImage(image, 0, 0, targetWidth, targetHeight, null);
+        graphics2D.dispose();
+
+        return resizedImage;
     }
 
     private BufferedImage matToBufferedImage(Mat mat) {
@@ -47,8 +59,8 @@ public class ImagePanel extends JPanel {
         return image;
     }
 
-    public void setImage(Mat image) {
-        this.image = image.clone();
+    public void setMatImage(Mat matImage) {
+        this.matImage = matImage.clone();
         showImage();
     }
 }

@@ -62,7 +62,20 @@ public class GradientMethodPanel extends JPanel {
 
     private void showThresholdedImage() {
         BufferedImage image = matToBufferedImage(matImage);
-        imageLabel.setIcon(new ImageIcon(image));
+        int targetWidth = 300;
+        int targetHeight = 300;
+        BufferedImage resizedImage = resizeImage(image, targetWidth, targetHeight);
+
+        imageLabel.setIcon(new ImageIcon(resizedImage));
+    }
+
+    private BufferedImage resizeImage(BufferedImage image, int targetWidth, int targetHeight) {
+        BufferedImage resizedImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
+        Graphics2D graphics2D = resizedImage.createGraphics();
+        graphics2D.drawImage(image, 0, 0, targetWidth, targetHeight, null);
+        graphics2D.dispose();
+
+        return resizedImage;
     }
 
     private BufferedImage matToBufferedImage(Mat mat) {

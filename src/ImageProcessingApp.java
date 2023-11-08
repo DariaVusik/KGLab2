@@ -51,7 +51,7 @@ public class ImageProcessingApp {
                     Mat image = loadImage(filePath);
 
 
-                    imagePanel.setImage(image);
+                    imagePanel.setMatImage(image);
                     otsuMethodPanel.setImage(image);
                     gradientMethodPanel.setImage(image);
                     medianFilterPanel.setImage(image);

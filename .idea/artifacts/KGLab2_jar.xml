@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="KGLab2:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/KGLab2_jar</output-path>
+    <root id="archive" name="KGLab2.jar">
+      <element id="module-output" name="KGLab2" />
+      <element id="extracted-dir" path="D:/OpenCV/opencv/build/java/opencv-480.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
